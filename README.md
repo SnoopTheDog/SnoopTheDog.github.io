@@ -1,3 +1,3 @@
 # snoopiedoom.github.io
 
-my personal dumpstur
+a page
