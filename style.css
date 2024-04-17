@@ -63,32 +63,32 @@ a {
 
 @font-face {
     font-family: 'JetbrainsMono';
-    src: url('fonts/jetbrains_mono/ttf/JetbrainsMono-Regular.ttf') format('truetype'),
-         url('fonts/jetbrains_mono/webfonts/JetbrainsMono-Regular.woff2') format('woff2');
+    src: url('../snoopiedoom.github.io/fonts/jetbrains_mono/ttf/JetbrainsMono-Regular.ttf') format('truetype'),
+         url('../snoopiedoom.github.io/fonts/jetbrains_mono/webfonts/JetbrainsMono-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'JetbrainsMono-Italic';
-    src: url('fonts/jetbrains_mono/ttf/JetbrainsMono-Italic.ttf') format('truetype'),
-         url('fonts/jetbrains_mono/webfonts/JetbrainsMono-Italic.woff2') format('woff2');
+    src: url('../snoopiedoom.github.io/fonts/jetbrains_mono/ttf/JetbrainsMono-Italic.ttf') format('truetype'),
+         url('../snoopiedoom.github.io/fonts/jetbrains_mono/webfonts/JetbrainsMono-Italic.woff2') format('woff2');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'JetbrainsMono-Bold';
-    src: url('fonts/jetbrains_mono/ttf/JetbrainsMono-Bold.ttf') format('truetype'),
-         url('fonts/jetbrains_mono/webfonts/JetbrainsMono-Bold.woff2') format('woff2');
+    src: url('../snoopiedoom.github.io/fonts/jetbrains_mono/ttf/JetbrainsMono-Bold.ttf') format('truetype'),
+         url('../snoopiedoom.github.io/fonts/jetbrains_mono/webfonts/JetbrainsMono-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'JetbrainsMono-BoldItalic';
-    src: url('fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
-         url('fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
+    src: url('../snoopiedoom.github.io/fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
+         url('../snoopiedoom.github.io/fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
 }
