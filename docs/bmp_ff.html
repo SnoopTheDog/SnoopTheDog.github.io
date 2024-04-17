@@ -1,0 +1,267 @@
+<html>
+    <meta name="robots" content="index">
+    <meta name="description" content="A complete explanation of the standard Windows bitmap file format (.bmp/.dib)">
+    <meta name="author" content="hetzl@teleweb.at (Stefan Hetzl)">
+    <meta name="keywords" content="bmp file format, bitmap file format, bmp, dib, device independent bitmap, bitmap format, bitmap">
+    <title>The .bmp file format</title>
+	<link rel="stylesheet" href="../style.css" type="text/css"/>
+</head>
+
+<center><br><h1>The .bmp file format</h1></center><br>
+<h3>Introduction:</h3>
+The .bmp file format (sometimes also saved as .dib) is the standard for a Windows 3.0 or later <a href="bmsinwin.html">DIB(device independent
+bitmap)</a> file. It may use compression (though I never came across a compressed .bmp-file) and is (by itself) not capable of storing
+animation. However, you can animate a bitmap using different methods but you have to write the code which performs the animation. 
+There are different ways to compress a .bmp-file, but I won't explain them here because they are so rarely used. The image data itself can
+either contain pointers to entries in a color table or literal RGB values (this is explained later).<p><br>
+
+<h3>Basic structure:</h3>
+A .bmp file contains of the following data structures:
+<pre>
+BITMAPFILEHEADER    bmfh;
+BITMAPINFOHEADER    bmih;
+RGBQUAD             aColors[];
+BYTE                aBitmapBits[];
+</pre>
+<i>bmfh</i> contains some information about the bitmap file (about the file, not about the bitmap itself). <i>bmih</i> contains information
+about the bitmap such as size, colors,... The <i>aColors array</i> contains a color table. The rest is the image data,
+which format is specified by the <i>bmih</i> structure.<p><br>
+
+<h3>Exact structure:</h3>
+The following tables give exact information about the data structures and also contain the settings for a bitmap with the
+following dimensions: size 100x100, 256 colors, no compression. The <i>start</i>-value is the position of the byte in the file at
+which the explained data element of the structure starts, the <i>size</i>-value contains the nuber of bytes used by this
+data element, the <i>name</i>-value is the name assigned to this data element by the Microsoft API documentation.
+<i>Stdvalue</i> stands for standard value. There actually is no such a thing as a
+standard value but this is the value Paint assigns to the data element if using the bitmap dimensions specified above (100x100x256).
+The <i>meaning</i>-column gives a short explanation of the purpose of this data element.<p>
+
+<h3>The BITMAPFILEHEADER:</h3>
+<table border="1" cellspacing="0" cellpadding="3">
+	<tr>
+		<td><b>start</b></td>
+		<td><b>size</b></td>
+		<td><b>name</b></td>
+		<td><b>stdvalue</b></td>
+		<td><b>purpose</b></td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>bfType</td>
+		<td>19778</td>
+		<td>must always be set to 'BM' to declare that this is a .bmp-file.</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>4</td>
+		<td>bfSize</td>
+		<td>??</td>
+		<td>specifies the size of the file in bytes.</td>
+	</tr>
+	<tr>
+		<td>7</td>
+		<td>2</td>
+		<td>bfReserved1</td>
+		<td>0</td>
+		<td>must always be set to zero.</td>
+	</tr>
+	<tr>
+		<td>9</td>
+		<td>2</td>
+		<td>bfReserved2</td>
+		<td>0</td>
+		<td>must always be set to zero.</td>
+	</tr>
+	<tr>
+		<td>11</td>
+		<td>4</td>
+		<td>bfOffBits</td>
+		<td>1078</td>
+		<td>specifies the offset from the beginning of the file to the bitmap data.</td>
+	</tr>
+
+</table><p>
+
+<a name="bmih"><h3>The BITMAPINFOHEADER:</h3>
+<table border="1" cellspacing="0" cellpadding="3">
+	<tr>
+		<td>start</td>
+		<td>size</td>
+		<td>name</td>
+		<td>stdvalue</td>
+		<td>purpose</td>
+	</tr>
+	<tr>
+		<td>15</td>
+		<td>4</td>
+		<td>biSize</td>
+		<td>40</td>
+		<td>specifies the size of the BITMAPINFOHEADER structure, in bytes.</td>
+	</tr>
+	<tr>
+		<td>19</td>
+		<td>4</td>
+		<td>biWidth</td>
+		<td>100</td>
+		<td>specifies the width of the image, in pixels.</td>
+	</tr>
+	<tr>
+		<td>23</td>
+		<td>4</td>
+		<td>biHeight</td>
+		<td>100</td>
+		<td>specifies the height of the image, in pixels.</td>
+	</tr>
+	<tr>
+		<td>27</td>
+		<td>2</td>
+		<td>biPlanes</td>
+		<td>1</td>
+		<td>specifies the number of planes of the target device, must be set to zero.</td>
+	</tr>
+	<tr>
+		<td>29</td>
+		<td>2</td>
+		<td>biBitCount</td>
+		<td>8</td>
+		<td>specifies the number of bits per pixel.</td>
+	</tr>
+	<tr>
+		<td>31</td>
+		<td>4</td>
+		<td>biCompression</td>
+		<td>0</td>
+		<td>Specifies the type of compression, usually set to zero (no compression).</td>
+	</tr>
+	<tr>
+		<td>35</td>
+		<td>4</td>
+		<td>biSizeImage</td>
+		<td>0</td>
+		<td>specifies the size of the image data, in bytes. If there is no compression, it is valid to set this member to zero.</td>
+	</tr>
+	<tr>
+		<td>39</td>
+		<td>4</td>
+		<td>biXPelsPerMeter</td>
+		<td>0</td>
+		<td>specifies the the horizontal pixels per meter on the designated targer device, usually set to zero.</td>
+	</tr>
+	<tr>
+		<td>43</td>
+		<td>4</td>
+		<td>biYPelsPerMeter</td>
+		<td>0</td>
+		<td>specifies the the vertical pixels per meter on the designated targer device, usually set to zero.</td>
+	</tr>
+	<tr>
+		<td>47</td>
+		<td>4</td>
+		<td>biClrUsed</td>
+		<td>0</td>
+		<td>specifies the number of colors used in the bitmap, if set to zero the number of colors is calculated using the biBitCount member.</td>
+	</tr>
+	<tr>
+		<td>51</td>
+		<td>4</td>
+		<td>biClrImportant</td>
+		<td>0</td>
+		<td>specifies the number of color that are 'important' for the bitmap, if set to zero, all colors are important.</td>
+	</tr>
+</table><br>
+Note that <i>biBitCount</i> actually specifies the color resolution of the bitmap. The possible values are: 1 (black/white);
+4 (16 colors); 8 (256 colors); 24 (16.7 million colors). The biBitCount data element also decides if there is a
+color table in the file and how it looks like. In 1-bit mode the color table has to contain 2 entries (usually white and
+black). If a bit in the image data is clear, it points to the first palette entry. If the bit is set, it points to the second.
+In 4-bit mode the color table must contain 16 colors. Every byte in the image data represents two pixels. The byte is
+split into the higher 4 bits and the lower 4 bits and each value of them points to a palette entry. There are also
+standard colors for 16 colors mode (16 out of Windows 20 <a href="rescolrs.html">reserved colors</a> (without the
+entries 8, 9, 246, 247)). Note that you do not need to use this standard colors if the bitmap is to be displayed on a
+screen which support 256 colors or more, however (nearly) every 4-bit image uses this standard colors. In 8-bit mode
+every byte represents a pixel. The value points to an entry in the color table which contains 256 entries (for details see
+<a href="palinwin.html">Palettes in Windows</a>. In 24-bit mode three bytes represent one
+pixel. The first byte represents the red part, the second the green and the third the blue part. There is no need for a
+palette because every pixel contains a literal RGB-value, so the palette is omitted.<p>
+
+<h3>The RGBQUAD array:</h3>
+The following table shows a single RGBQUAD structure:<br>
+<table border="1" cellspacing="0" cellpadding="3">
+	<tr>
+		<td>start</td>
+		<td>size</td>
+		<td>name</td>
+		<td>stdvalue</td>
+		<td>purpose</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>rgbBlue</td>
+		<td>-</td>
+		<td>specifies the blue part of the color.</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>1</td>
+		<td>rgbGreen</td>
+		<td>-</td>
+		<td>specifies the green part of the color.</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>1</td>
+		<td>rgbRed</td>
+		<td>-</td>
+		<td>specifies the red part of the color.</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>1</td>
+		<td>rgbReserved</td>
+		<td>-</td>
+		<td>must always be set to zero.</td>
+	</tr>
+</table><br>
+Note that the term <i>palette</i> does not refer to a RGBQUAD array, which is called <i>color table</i> instead.  Also
+note that, in a color table (RGBQUAD), the specification for a color starts with the blue byte. In a palette a color always starts with
+the red byte. There is no simple way to map the whole color table into a LOGPALETTE structure, which you will need to display
+the bitmap. You will have to write a function that copies byte after byte.<p>
+
+<h3>The pixel data:</h3>
+It depens on the BITMAPINFOHEADER structure how the pixel data is to be interpreted
+(<a href="bmpffrmt.html#bmih">see above</a>).<br>
+It is important to know that the rows of a DIB are stored upside down. That means that the uppest row which appears
+on the screen actually is the lowest row stored in the bitmap, a short example:<p>
+<table width="100%" cellpadding="10" cellspacing="0">
+	<tr>
+ 		<th width="50%"><img src="../resources/nhouse.gif"></th>
+		<th width="50%"><img src="../resources/mhouse.gif" < th>
+	</tr>
+	<tr>
+		<th>pixels displayed on the screen</th>
+		<th>pixels stored in .bmp-file</th>
+	</tr>
+</table><p>
+You do not need to turn around the rows manually. The API functions which also display the bitmap will do that for you
+automatically.<br>
+Another important thing is that the number of bytes in one row must always be adjusted to fit into the border of a
+multiple of four. You simply append zero bytes until the number of bytes in a row reaches a multiple of four, an example:<p>
+<table border="0" cellspacing="0" cellpadding="5">
+	<tr>
+		<td align="RIGHT"><tt>6 bytes that represent a row in the bitmap:</tt></td>
+		<td><tt>A0 37 F2 8B 31 C4</tt></td>
+	</tr>
+	<tr>
+		<td align="RIGHT"><tt>must be saved as:</tt></td>
+		<td><tt>A0 37 F2 8B 31 C4 <b>00 00</b></tt></td>
+	</tr>
+</table><p>
+to reach the multiple of four which is the next higher after six (eight). If you keep these few rules in mind while working
+with .bmp&nbsp;files it should be easy for you, to master it.<p>
+
+<a href="../index.html">Back to the main page</a><p><br>
+<hr>
+Copyright 1998 Stefan Hetzl.  If you have questions or comments or have discovered an error,
+<a href="https://web.archive.org/web/20080912171714/mailto:hetzl@teleweb.at">send mail</a> to hetzl@teleweb.at. You may forward this document or publish it on
+your webpage as long as you don't change it and leave this notice at the end.
