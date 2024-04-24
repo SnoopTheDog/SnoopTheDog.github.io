@@ -41,7 +41,8 @@ a {
 #docs_title {
     /* text-decoration: underline; */
 }
-
+Main.tiSettings.ucSettings.tiHardwareParameters.gbGeneralParameters.txtPharmacodeInspectionPosition
+Main.tiSettings.ucSettings.tiHardwareParameters.gbGeneralParameters.txtLabelInspectionPosition
 #docs_ele {
     display: block;
 }
@@ -87,8 +88,8 @@ a {
 
 @font-face {
     font-family: 'JetbrainsMono-BoldItalic';
-    src: url('./fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
-         url('./fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
+    src: url('../../snoopiedoom.github.io/fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
+         url('../../snoopiedoom.github.io/fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
 }
