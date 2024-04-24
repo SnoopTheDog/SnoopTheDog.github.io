@@ -88,8 +88,8 @@ Main.tiSettings.ucSettings.tiHardwareParameters.gbGeneralParameters.txtLabelInsp
 
 @font-face {
     font-family: 'JetbrainsMono-BoldItalic';
-    src: url('../../snoopiedoom.github.io/fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
-         url('../../snoopiedoom.github.io/fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
+    src: url('../fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
+         url('../fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
 }
