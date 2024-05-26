@@ -64,10 +64,18 @@ Main.tiSettings.ucSettings.tiHardwareParameters.gbGeneralParameters.txtLabelInsp
 
 @font-face {
     font-family: 'JetbrainsMono';
-    src: url('fonts/jetbrains_mono/ttf/JetbrainsMono-Regular.ttf') format('truetype'),
-         url('fonts/jetbrains_mono/webfonts/JetbrainsMono-Regular.woff2') format('woff2');
+    src: url('/fonts/jetbrains_mono/ttf/JetbrainsMono-Regular.ttf') format('truetype'),
+         url('/fonts/jetbrains_mono/webfonts/JetbrainsMono-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetbrainsMono-BoldItalic';
+    src: url('/fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
+         url('/fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
 }
 
 @font-face {
@@ -84,12 +92,4 @@ Main.tiSettings.ucSettings.tiHardwareParameters.gbGeneralParameters.txtLabelInsp
          url('./fonts/jetbrains_mono/webfonts/JetbrainsMono-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
-}
-
-@font-face {
-    font-family: 'JetbrainsMono-BoldItalic';
-    src: url('./fonts/jetbrains_mono/ttf/JetbrainsMono-BoldItalic.ttf') format('truetype'),
-         url('./fonts/jetbrains_mono/webfonts/JetbrainsMono-BoldItalic.woff2') format('woff2');
-    font-weight: bold;
-    font-style: italic;
 }
